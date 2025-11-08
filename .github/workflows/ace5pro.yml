@@ -46,16 +46,6 @@ jobs:
       CCACHE_HARDLINK: "true"
       TOKEN: ${{ secrets.TOKEN }}
     steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 8192
-          temp-reserve-mb: 2048
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          
       - name: Configure Git
         run: |
          git config --global user.name "build"
@@ -137,7 +127,7 @@ jobs:
          echo "Using local_version: ${{ inputs.local_version }}"
          sed -i "s/CONFIG_LOCALVERSION=\"-4k\"/CONFIG_LOCALVERSION=\"${{ inputs.local_version }}\"/" ./common/arch/arm64/configs/gki_defconfig
            
-      - name: Add SUSFS Configuration Settings
+      - name: Add Configuration Settings
         run: |
           cd kernel_workspace/kernel_platform
           # 向 gki_defconfig 中追加配置
