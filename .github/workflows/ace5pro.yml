@@ -138,6 +138,7 @@ jobs:
           # 2. 修复 ld-version.sh 支持 mold
           rm ./common/scripts/ld-version.sh
           touch ./common/scripts/ld-version.sh
+          sudo chmod 777 ./common/scripts/ld-version.sh
 
           # 提交更改（可选）
           cd common
