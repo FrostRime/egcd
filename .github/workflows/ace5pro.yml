@@ -139,8 +139,6 @@ jobs:
           rm ./common/scripts/ld-version.sh
           touch ./common/scripts/ld-version.sh
 
-          sed -i '/^else$/r mold_patch.txt' ./common/scripts/ld-version.sh
-          rm mold_patch.txt
           # 提交更改（可选）
           cd common
           git add -A
