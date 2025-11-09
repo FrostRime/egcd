@@ -137,7 +137,7 @@ jobs:
           sed -i 's/check_defconfig//' ./common/build.config.gki
           # 2. 修复 ld-version.sh 支持 mold
           sed -i '/elif \[ "\$1" = GNU -a "\$2" = gold \]; then/,/exit 1/a\
-          elif [ "$1" = mold ]; then\
+          else [ "$1" = mold ]; then\
           \t# Extract version from mold output\
           \t# mold version 2.32.0 (compatible with GNU ld)\
           \tversion=2\
