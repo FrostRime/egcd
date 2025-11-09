@@ -139,7 +139,7 @@ jobs:
           rm ./common/scripts/ld-version.sh
           touch ./common/scripts/ld-version.sh
           sudo chmod 777 ./common/scripts/ld-version.sh
-          echo "mold --version | awk '{print $1, $3}'" 
+          echo 'mold --version | awk "{print \$1, \$3}"' > ./common/scripts/ld-version.sh
 
           # 提交更改（可选）
           cd common
