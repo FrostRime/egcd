@@ -143,13 +143,13 @@ jobs:
           \tversion=$3\
           \tmin_version=$($min_tool_version mold)\
           \tname=MOLD\
-          \tdisp_name="mold"' ./scripts/ld-version.sh
+          \tdisp_name="mold"' ./common/scripts/ld-version.sh
 
           # 3. 修复 min-tool-version.sh 添加 mold 版本要求
           sed -i '/bindgen)/,/;;/a\
           mold)\
           \techo 2.0.0\
-          \t;;' ./scripts/min-tool-version.sh
+          \t;;' ./common/scripts/min-tool-version.sh
           
           # 提交更改（可选）
           cd common
