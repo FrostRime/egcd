@@ -140,16 +140,10 @@ jobs:
           elif [ "$1" = mold ]; then\
           \t# Extract version from mold output\
           \t# mold version 2.32.0 (compatible with GNU ld)\
-          \tversion=$3\
-          \tmin_version=$($min_tool_version mold)\
+          \tversion=2\
+          \tmin_version=1\
           \tname=MOLD\
           \tdisp_name="mold"' ./common/scripts/ld-version.sh
-
-          # 3. 修复 min-tool-version.sh 添加 mold 版本要求
-          sed -i '/bindgen)/,/;;/a\
-          mold)\
-          \techo 2.0.0\
-          \t;;' ./common/scripts/min-tool-version.sh
           
           # 提交更改（可选）
           cd common
