@@ -61,6 +61,10 @@ jobs:
          sudo apt-get update  
          sudo apt-get install -y python3 git curl ccache libelf-dev mold
          sudo apt-get install -y dos2unix
+         # 验证 mold 链接器是否可用
+         echo "🔍 验证 mold 链接器："
+         which mold || { echo "❌ mold 链接器未找到"; exit 1; }
+         mold --version
 
       # 3. 恢复 ccache 缓存  
       - name: Restore ccache
@@ -217,7 +221,7 @@ jobs:
          export MAKE_ARGS="LLVM=1 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC=clang \
          RUSTC=../../prebuilts/rust/linux-x86/1.73.0b/bin/rustc \
          PAHOLE=../../prebuilts/kernel-build-tools/linux-x86/bin/pahole \
-         LD=mold HOSTLD=mold O=out SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}"
+         LD=mold HOSTLD=ld.lld O=out SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}"
 
          # 进入源码目录
          cd ${{ github.workspace }}/kernel_workspace/kernel_platform/common || { echo "❌ 源码目录不存在"; exit 1; }
