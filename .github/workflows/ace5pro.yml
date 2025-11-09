@@ -136,15 +136,16 @@ jobs:
           # 移除构建流程中的 check_defconfig 校验
           sed -i 's/check_defconfig//' ./common/build.config.gki
           # 2. 修复 ld-version.sh 支持 mold
-          sed -i '/else\
-          if [ "$1" = mold ]; then\
-          \t# Extract version from mold output\
-          \t# mold version 2.32.0 (compatible with GNU ld)\
-          \tversion=2\
-          \tmin_version=1\
-          \tname=MOLD\
-          \tdisp_name="mold"' ./common/scripts/ld-version.sh
-          
+          cat <<EOF >> mold_patch.txt
+          elif [ "$1" = "mold" ]; then
+            version=2
+          	min_version=1
+            name=MOLD
+            disp_name=mold
+          EOF
+
+          sed -i '/^else$/r mold_patch.txt' ./common/scripts/ld-version.sh
+          rm mold_patch.txt
           # 提交更改（可选）
           cd common
           git add -A
