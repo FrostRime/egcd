@@ -138,10 +138,9 @@ jobs:
           # 2. 修复 ld-version.sh 支持 mold
           rm ./common/scripts/ld-version.sh
           touch ./common/scripts/ld-version.sh
-          mold --version | awk '{print "mold", $NF}'
           sudo chmod 777 ./common/scripts/ld-version.sh
           cat > ./common/scripts/ld-version.sh << 'EOF'
-          mold --version | awk '{print "mold", $NF}'
+          echo "mold" "2.30.0"
           EOF
           
           # 提交更改（可选）
